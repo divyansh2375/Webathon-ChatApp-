@@ -5,9 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat app</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body{
+            background: rgb(47, 43, 43);
+        }
+        button{
+            size: 300px;
+        }
+        .container{
+            display: block;
+            margin-left: auto;
+            margin-top: auto;
+        }
+        #btn{
+            padding: 10px;
+            background-color: aquamarine;
+        }
+        #btn :hover{
+            background-color: greenyellow;
+        }
+        #newmsg{
+            border: 5px solid skyblue;
+            height: 30px;
+            
+
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Chat app using Sockets</h1>
+    <div class="container" style="background-color: rgb(232, 167, 16); padding: 6px; max-width: max-content; margin-right: 600px; margin-top: 300px; height: 200px; width: 600px;">
+
+    <h1>Welcome to chat app</h1>
+
+
+    <h4>Send Your Message...</h4>
+
 
     <button id="btn">Send</button>
     <input type="text" id="newmsg">
@@ -16,6 +50,7 @@
     <ul id="msglist">
 
     </ul>
+</div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
