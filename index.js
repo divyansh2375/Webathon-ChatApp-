@@ -1,17 +1,28 @@
-//installing the dependencies 
-const express = require("express")
-const http = require("http")
-const socketio = require("socket.io")
-const port = 3000 ;
+const express = require('express');
+const http = require('http');
+const socketio = require('socket.io');
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
-const app = express()
-const server = http.createServer(app)
 
-app.get("/", (req,res) => {
-    res.send("Hello")
+io.on('connection', (socket) => {
+    console.log('a user connected', socket.id);
+
+    socket.on('msg_send', (data) => {
+        console.log(data);
+        // io.emit('msg_rcvd', data);
+        // socket.emit('msg_rcvd', data)
+        socket.broadcast.emit('msg_rcvd', data)
+    })
+
+    setInterval(() => {
+        socket.emit('from_server');
+    }, 2000);
+});
+
+app.use('/', express.static(__dirname + '/public'));
+server.listen(3000, () => {
+    console.log('Server started');
 })
 
-
-app.listen(`${port}` , ()=> {
-    console.log(`Server started and running on ${port}`)
-})
